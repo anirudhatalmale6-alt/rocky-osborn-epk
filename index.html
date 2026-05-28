@@ -38,7 +38,7 @@ body {
   inset: 0;
   z-index: 0;
   background: url('images/brick-tile.jpg') repeat;
-  background-size: 600px 400px;
+  background-size: 600px 500px;
 }
 
 .brick-bg::before {
@@ -83,19 +83,30 @@ body {
 }
 
 .header-name {
-  margin-bottom: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  letter-spacing: 0.08em;
+  line-height: 0.95;
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 8px rgba(200,164,78,0.3));
+  margin-bottom: 8px;
 }
 
-.header-name img {
-  max-width: 420px;
-  width: 85%;
+.stamp-logo {
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 0;
+}
+
+.stamp-logo img {
+  max-width: 320px;
+  width: 70%;
   height: auto;
   filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
-  display: block;
-  margin: 0 auto;
+  opacity: 0.9;
 }
 
 .header-tagline {
@@ -487,6 +498,7 @@ body {
 .bottom-grid { animation: fadeUp 0.8s 0.3s ease both; }
 .quote-section { animation: fadeUp 0.8s 0.45s ease both; }
 .epk-footer { animation: fadeUp 0.8s 0.55s ease both; }
+.stamp-logo { animation: fadeUp 0.8s 0.65s ease both; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
@@ -526,7 +538,7 @@ body {
 
   <!-- HEADER -->
   <header class="header">
-    <h1 class="header-name"><img src="images/rocky-logo.png" alt="Rocky Osborn"></h1>
+    <h1 class="header-name">Rocky Osborn</h1>
     <p class="header-tagline">Comedian <span>&bull;</span> Actor <span>&bull;</span> Producer</p>
     <div class="social-row">
       <a href="https://www.instagram.com/rockyscomedy" target="_blank" rel="noopener" aria-label="Instagram">
@@ -634,6 +646,11 @@ body {
       <div class="footer-block-text" style="margin-top: 4px;"><a href="https://www.rockyosborn.me" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: none;">www.rockyosborn.me</a></div>
     </div>
   </footer>
+
+  <!-- STAMP LOGO -->
+  <div class="stamp-logo">
+    <img src="images/rocky-logo.png" alt="Rocky Osborn Logo">
+  </div>
 
 </div>
 
