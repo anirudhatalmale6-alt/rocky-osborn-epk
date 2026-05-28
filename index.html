@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocky Osborn — EPK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #C8A44E;
+  --gold-light: #E8D08C;
+  --gold-dark: #8B6914;
+  --bg-dark: #1A1210;
+  --bg-panel: rgba(20, 15, 12, 0.88);
+  --bg-panel-alt: rgba(30, 22, 16, 0.92);
+  --text-cream: #F2E8D9;
+  --text-muted: #A89880;
+  --accent-red: #8B2020;
+  --border-gold: rgba(200, 164, 78, 0.25);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Brick wall background */
+.brick-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 48px,
+      rgba(0,0,0,0.4) 48px,
+      rgba(0,0,0,0.4) 50px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 98px,
+      rgba(0,0,0,0.3) 98px,
+      rgba(0,0,0,0.3) 100px
+    );
+  background-size: 100px 50px;
+  background-color: #2C1810;
+  filter: brightness(0.35);
+}
+
+.brick-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(139,32,32,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(139,32,32,0.1) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.5) 100%);
+}
+
+.epk-container {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+/* ── HEADER ── */
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 24px auto 0;
+}
+
+.header-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  letter-spacing: 0.08em;
+  line-height: 0.95;
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 8px rgba(200,164,78,0.3));
+  margin-bottom: 8px;
+}
+
+.header-tagline {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.header-tagline span {
+  color: var(--gold);
+  margin: 0 8px;
+}
+
+.social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.social-row a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  color: var(--gold);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-row a:hover {
+  background: var(--gold);
+  color: var(--bg-dark);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(200,164,78,0.35);
+}
+
+.social-row svg { width: 18px; height: 18px; fill: currentColor; }
+
+.social-handle {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ── MAIN GRID ── */
+.main-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+/* Hero photo */
+.hero-photo {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Bio panel */
+.bio-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  padding: 36px 32px;
+  backdrop-filter: blur(12px);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-left: 16px;
+  border-left: 3px solid var(--gold);
+}
+
+.bio-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-cream);
+  opacity: 0.9;
+}
+
+.bio-text p { margin-bottom: 16px; }
+.bio-text p:last-child { margin-bottom: 0; }
+
+.bio-text strong {
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+/* Stats row */
+.stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.stat-box {
+  background: linear-gradient(135deg, rgba(200,164,78,0.08), rgba(200,164,78,0.03));
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.stat-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── BOTTOM GRID ── */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+/* Media section */
+.media-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.media-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  padding: 28px 24px;
+  backdrop-filter: blur(12px);
+}
+
+.video-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: rgba(200,164,78,0.06);
+  border: 1px solid rgba(200,164,78,0.15);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text-cream);
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.video-link:last-child { margin-bottom: 0; }
+
+.video-link:hover {
+  background: rgba(200,164,78,0.12);
+  border-color: var(--gold);
+  transform: translateX(4px);
+}
+
+.video-link .play-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-link .play-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--bg-dark);
+  margin-left: 2px;
+}
+
+.video-link .vid-info { flex: 1; }
+
+.video-link .vid-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  background: rgba(200,164,78,0.15);
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 3px;
+}
+
+.video-link .vid-title {
+  font-weight: 400;
+  font-size: 0.88rem;
+}
+
+/* Photo grid */
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.photo-square {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+
+.photo-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.photo-square:hover img { transform: scale(1.05); }
+
+.photo-square::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Career highlights */
+.career-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  padding: 36px 32px;
+  backdrop-filter: blur(12px);
+}
+
+.highlight-item {
+  margin-bottom: 22px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.highlight-item:last-child { margin-bottom: 0; }
+
+.highlight-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+.highlight-label {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--gold-light);
+  margin-bottom: 4px;
+}
+
+.highlight-text {
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text-cream);
+  opacity: 0.85;
+}
+
+/* ── QUOTE ── */
+.quote-section {
+  background: linear-gradient(135deg, rgba(200,164,78,0.06), rgba(200,164,78,0.02));
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  padding: 36px 40px;
+  margin-bottom: 32px;
+  text-align: center;
+  position: relative;
+}
+
+.quote-section::before {
+  content: '\201C';
+  position: absolute;
+  top: -8px;
+  left: 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-cream);
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ── FOOTER ── */
+.epk-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  padding: 28px 32px;
+}
+
+.footer-block-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.footer-block-text {
+  font-weight: 300;
+  font-size: 0.88rem;
+  color: var(--text-cream);
+  opacity: 0.8;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.header { animation: fadeUp 0.8s ease both; }
+.main-grid { animation: fadeUp 0.8s 0.15s ease both; }
+.bottom-grid { animation: fadeUp 0.8s 0.3s ease both; }
+.quote-section { animation: fadeUp 0.8s 0.45s ease both; }
+.epk-footer { animation: fadeUp 0.8s 0.55s ease both; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .main-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .photo-grid {
+    max-width: 400px;
+  }
+
+  .epk-footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .epk-container { padding: 24px 16px 40px; }
+  .bio-panel, .career-panel { padding: 24px 20px; }
+  .quote-section { padding: 28px 24px; }
+  .stats-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="brick-bg"></div>
+
+<div class="epk-container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1 class="header-name">Rocky Osborn</h1>
+    <p class="header-tagline">Comedian <span>&bull;</span> Actor <span>&bull;</span> Producer</p>
+    <div class="social-row">
+      <a href="https://www.instagram.com/rockyscomedy" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@rockyscomedy" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13a8.28 8.28 0 005.58 2.17v-3.45a4.85 4.85 0 01-1.42-.23 4.82 4.82 0 01-1.58-.8V6.69h3z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/RockysComedy" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <span class="social-handle">@RockysComedy</span>
+    </div>
+  </header>
+
+  <!-- MAIN: Hero Photo + Bio -->
+  <div class="main-grid">
+    <div class="hero-photo">
+      <img src="images/stage-photo.jpg" alt="Rocky Osborn performing on stage" loading="eager">
+    </div>
+    <div class="bio-panel">
+      <h2 class="section-title">Biography</h2>
+      <div class="bio-text">
+        <p>With over 35 years of dedicated stage experience, <strong>Rocky Osborn</strong> stands out as a highly respected powerhouse in the stand-up comedy circuit. Known for his flawless timing, sharp crowd work, and cross-generational appeal, Rocky effortlessly connects with diverse groups everywhere he performs.</p>
+        <p>Beyond delivering elite punchlines, Rocky is an industry mover-and-shaker. As the founder and executive producer of <strong>Rockys Comedy Live LLC</strong>, he actively produces, promotes, and anchors top-tier weekend showcases at premier venues, keeping live entertainment thriving nationwide.</p>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-number">Over 100M</div>
+          <div class="stat-label">Social Media Views</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">35</div>
+          <div class="stat-label">Years on Stage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM: Media + Photos | Career Highlights -->
+  <div class="bottom-grid">
+    <div class="media-section">
+      <div class="media-panel">
+        <h2 class="section-title">Media &amp; Video Reels</h2>
+        <a href="https://www.facebook.com/DryBarComedy/videos/574708239022319/" target="_blank" rel="noopener" class="video-link">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
+          </div>
+          <div class="vid-info">
+            <div class="vid-badge">Dry Bar Comedy</div>
+            <div class="vid-title">Featured Stand Up Clip</div>
+          </div>
+        </a>
+        <a href="https://www.facebook.com/reel/9872602006128379/" target="_blank" rel="noopener" class="video-link">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
+          </div>
+          <div class="vid-info">
+            <div class="vid-badge">Reel</div>
+            <div class="vid-title">Performance Highlights</div>
+          </div>
+        </a>
+      </div>
+      <div class="photo-grid">
+        <div class="photo-square">
+          <img src="images/stage-photo.jpg" alt="Rocky Osborn on stage" loading="lazy">
+        </div>
+        <div class="photo-square">
+          <img src="images/headshot.jpg" alt="Rocky Osborn headshot" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <div class="career-panel">
+      <h2 class="section-title">Career Highlights</h2>
+      <div class="highlight-item">
+        <div class="highlight-label">Global Digital Footprint</div>
+        <div class="highlight-text">Acclaimed Dry Bar Comedy special, NBC Comedy Showcase and Comics Unleashed appearances catapulted him onto worldwide screens, amassing over 100 million views.</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">Residency &amp; Showcases</div>
+        <div class="highlight-text">Frequently headlines Theaters, Comedy Clubs, Military functions, Corporate Events and is currently found as a Comedy Headliner performer for Royal Caribbean Cruise Lines.</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">A-List Collaborations</div>
+        <div class="highlight-text">Has shared the stage and opened for top comedians and celebrities throughout his career. Some notable collaborations include: Saturday Night Live alumni, Gallagher, Jimmie JJ Walker, Brad Williams, Taylor Tomlinson and more.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <p class="quote-text">"Fast paced, clever, and masterfully funny. Rocky bridges generations with a natural observational style that completely commands the room."</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="epk-footer">
+    <div>
+      <div class="footer-block-title">Management &amp; Booking</div>
+      <div class="footer-block-text">Rockys Comedy Live LLC</div>
+    </div>
+    <div>
+      <div class="footer-block-title">Inquiries &amp; Availability</div>
+      <div class="footer-block-text">Available for Clubs, Casinos, and Corporate Bookings</div>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
