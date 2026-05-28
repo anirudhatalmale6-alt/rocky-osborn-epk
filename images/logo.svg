@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 140" width="420" height="140">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0D890"/>
+      <stop offset="40%" stop-color="#C8A44E"/>
+      <stop offset="100%" stop-color="#8B6914"/>
+    </linearGradient>
+  </defs>
+  <g transform="rotate(-3, 210, 70)">
+    <rect x="8" y="8" width="404" height="124" rx="4" fill="none" stroke="url(#gold)" stroke-width="4"/>
+    <rect x="16" y="16" width="388" height="108" rx="2" fill="none" stroke="url(#gold)" stroke-width="2"/>
+    <text x="210" y="62" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="58" font-weight="900" fill="url(#gold)" letter-spacing="6">ROCKY</text>
+    <text x="210" y="118" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="58" font-weight="900" fill="url(#gold)" letter-spacing="6">OSBORN</text>
+  </g>
+</svg>
